@@ -1,15 +1,21 @@
+using Unity.FPS.Gameplay;
 using UnityEngine;
 
 public class BallBehaviour : MonoBehaviour
 {
     // Creating reference to player's transform
-    public Transform player;
+    private Transform player;
     // Setting the speed that the object follows the player
     public float FollowSpeed = 5f;
 
     // Setting the height of the object
 
     public float FixedHeight = 1f;
+
+    private void Start()
+    {
+        player = FindFirstObjectByType<PlayerCharacterController>().transform;
+    }
 
     void Update()
     {
