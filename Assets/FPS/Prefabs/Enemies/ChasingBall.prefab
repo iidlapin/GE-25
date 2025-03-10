@@ -53,6 +53,10 @@ MonoBehaviour:
   SensibilityToSelfdamage: 0.5
   followSpeed: 5
   fixedHeight: 1
+  dealsDamage: 0
+  damageRadius: 3
+  damageInterval: 1
+  damage: 10
   deathVFX: {fileID: 8950624839484268180, guid: 45ce85b82008be84287f2c7e5bf07647,
     type: 3}
 --- !u!114 &-8209060934663726791

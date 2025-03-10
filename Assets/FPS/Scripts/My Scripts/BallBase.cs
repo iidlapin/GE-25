@@ -10,6 +10,8 @@ public abstract class BallBase : Damageable
 {
     [SerializeField] private float followSpeed = 5f;
     [SerializeField] private float fixedHeight = 1f;
+
+    [SerializeField] private bool dealsDamage = true;
     [SerializeField] private float damageRadius = 3f;
     [SerializeField] private float damageInterval = 1f;
     [SerializeField] private float damage = 10f;
@@ -23,7 +25,9 @@ public abstract class BallBase : Damageable
     {
         player = FindFirstObjectByType<PlayerCharacterController>().transform;
 
-        StartCoroutine(DamagePlayer());
+        if(dealsDamage)
+            StartCoroutine(DamagePlayer());
+
         //Subscribe to the OnDie event in the Health class so we know when the enemy is killed and we can call our Die function
         Health.OnDie += Die;
     }
