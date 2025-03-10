@@ -1,7 +1,7 @@
 using Unity.FPS.Gameplay;
 using UnityEngine;
 
-public class BallBehaviour : MonoBehaviour
+public class BallBehaviour : Obstacle
 {
     // Creating reference to player's transform
     private Transform player;
@@ -12,7 +12,15 @@ public class BallBehaviour : MonoBehaviour
 
     public float FixedHeight = 1f;
 
-    private void Start()
+    public float attackPower = 10f;
+
+    // Implementing the abstract Attack method
+    public override void Attack()
+    {
+        Debug.Log("Ball attacks with " + attackPower + " damage!");
+    }
+
+private void Start()
     {
         player = FindFirstObjectByType<PlayerCharacterController>().transform;
     }

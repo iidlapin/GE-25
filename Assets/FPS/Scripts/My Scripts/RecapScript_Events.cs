@@ -1,5 +1,5 @@
 using UnityEngine;
-using AG3787
+using AG3787;
 using System;
 using System.Collections.Generic;
 
