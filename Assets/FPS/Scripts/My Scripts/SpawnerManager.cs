@@ -1,21 +1,26 @@
+using System.Collections;
 using System.Collections.Generic;
-using Unity.FPS.Game;
 using UnityEngine;
 
 public class SpawnerManager : MonoBehaviour
 {
     [SerializeField] private List<GameObject> enemies;
+    [SerializeField] private float spawningInterval;
 
-    void Update()
+    public void StartSpawningEnemies()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-            SpawnBall();
+        StartCoroutine(SpawningCycle());
     }
 
-    private void SpawnBall()
+    private IEnumerator SpawningCycle()
     {
-        int randomEnemyIndex = Random.Range(0, enemies.Count);
+        while (true) 
+        {
+            int randomEnemyIndex = Random.Range(0, enemies.Count);
 
-        Instantiate(enemies[randomEnemyIndex], Vector3.zero, Quaternion.identity);
+            Instantiate(enemies[randomEnemyIndex], Vector3.zero, Quaternion.identity);
+
+            yield return new WaitForSeconds(spawningInterval);
+        }
     }
 }
