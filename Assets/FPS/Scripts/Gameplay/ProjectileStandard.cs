@@ -235,6 +235,7 @@ namespace Unity.FPS.Gameplay
                 Damageable damageable = collider.GetComponent<Damageable>();
                 if (damageable)
                 {
+                    Debug.Log("Colliding with Damageable");
                     damageable.InflictDamage(Damage, false, m_ProjectileBase.Owner);
                 }
             }
