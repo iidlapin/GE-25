@@ -11,19 +11,19 @@ public abstract class BallBase : Damageable
     [SerializeField] private float followSpeed = 5f;
     [SerializeField] private float fixedHeight = 1f;
     [SerializeField] private float damageRadius = 3f;
-    [SerializeField] private float damageCheckInterval = 1f;
+    [SerializeField] private float damageInterval = 1f;
     [SerializeField] private float damage = 10f;
-    [SerializeField] private LayerMask playerMask;
      
     [SerializeField] private GameObject deathVFX;
 
     private Transform player;
+    private bool isPlayerInRange;
 
     private void Start()
     {
         player = FindFirstObjectByType<PlayerCharacterController>().transform;
 
-        StartCoroutine(CheckForPlayerInRange());
+        StartCoroutine(DamagePlayer());
         //Subscribe to the OnDie event in the Health class so we know when the enemy is killed and we can call our Die function
         Health.OnDie += Die;
     }
@@ -44,27 +44,26 @@ public abstract class BallBase : Damageable
 
             transform.position += movement;
             transform.position = new Vector3(transform.position.x, fixedHeight, transform.position.z);
+
+            if (Vector3.Distance(transform.position, player.position) < damageRadius)
+                isPlayerInRange = true;
+            else
+                isPlayerInRange = false;
+            
         }
     }
 
-    private IEnumerator CheckForPlayerInRange()
+    private IEnumerator DamagePlayer()
     {
         while (true)
         {
-            Damageable player = null;
-            var colliders = Physics.OverlapSphere(transform.position, damageRadius, playerMask);
-
-            if (colliders != null) 
-            { 
-                player = colliders[0].GetComponent<Damageable>(); 
-            }
-
-            if(player != null)
+            if (isPlayerInRange)
             {
-                player.InflictDamage(damage, false, this.gameObject);
+                player.GetComponent<Damageable>().InflictDamage(damage, false, this.gameObject);
+                yield return new WaitForSeconds(damageInterval);
             }
-
-            yield return new WaitForSeconds(damageCheckInterval);
+            else
+                yield return new WaitForEndOfFrame();
         }
     }
 
