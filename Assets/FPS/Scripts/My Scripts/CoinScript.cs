@@ -18,11 +18,5 @@ public class CoinScript : MonoBehaviour
             coinCollect.Invoke();
             Destroy(gameObject);
         }
-    }
-    public void TestMethod()
-    {
-        print("COIN COLLECTED");
-    }
-        
-    
+    } 
 }

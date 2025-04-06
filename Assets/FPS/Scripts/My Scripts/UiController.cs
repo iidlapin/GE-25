@@ -12,7 +12,6 @@ public class UiController : MonoBehaviour
     }
     public void UpdateScore()
     {
-        PlayerScore.text = gameManager.score.ToString();
-
+        PlayerScore.text = "Score: " + gameManager.score.ToString();
     }
 }
