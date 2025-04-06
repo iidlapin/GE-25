@@ -28,7 +28,7 @@ public abstract class BallBase : Damageable
         if(dealsDamage)
             StartCoroutine(DamagePlayer());
 
-        //Subscribe to the OnDie event in the Health class so we know when the enemy is killed and we can call our Die function
+        //Subscribe to the OnDie action in the Health class so we know when the enemy is killed and we can call our Die function
         Health.OnDie += Die;
     }
 
