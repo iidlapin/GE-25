@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        spawnerManager.StartSpawningEnemies();
+        spawnerManager.StartSpawning();
     }
 
     public void IncrementScore()

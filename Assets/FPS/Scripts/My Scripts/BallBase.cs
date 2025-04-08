@@ -74,6 +74,7 @@ public abstract class BallBase : Damageable
     private void Die()
     {
         HandleDeathVFX();
+        GetComponentInParent<SpawnerManager>().SpawnCoin(transform.position);
         Destroy(this.gameObject);
     }
 
