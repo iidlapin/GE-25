@@ -45,15 +45,15 @@ public abstract class BallBase : Damageable, IFollower
 
     public void Follow()
     {
-        if (player != null)
+        if (target != null)
         {
-            Vector3 direction = player.position - transform.position;
+            Vector3 direction = target.position - transform.position;
             Vector3 movement = direction.normalized * followSpeed * Time.deltaTime;
 
             transform.position += movement;
             transform.position = new Vector3(transform.position.x, fixedHeight, transform.position.z);
 
-            isPlayerInRange = Vector3.Distance(transform.position, player.position) < damageRadius;
+            isPlayerInRange = Vector3.Distance(transform.position, target.position) < damageRadius;
             
         }
     }
