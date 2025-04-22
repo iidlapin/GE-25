@@ -8,6 +8,7 @@ public class SpawnerManager : MonoBehaviour
     [SerializeField] private Vector2 spawningInterval;
     [SerializeField] private GameObject coin;
     [SerializeField] private Bounds spawningArea;
+    [SerializeField] private float coinSpawnOffset = 0.5f;
   
     public void StartSpawning()
     {
@@ -40,7 +41,14 @@ public class SpawnerManager : MonoBehaviour
 
     public void SpawnCoin(Vector3 deathPos) 
     {
-        Instantiate(coin, deathPos, Quaternion.identity);
+        var offset = new Vector3
+            (
+                Random.Range(-coinSpawnOffset, coinSpawnOffset),
+                0f,
+                Random.Range(-coinSpawnOffset, coinSpawnOffset)
+            );
+
+        Instantiate(coin, deathPos + offset, Quaternion.identity);
     }
 
     private float GetRandomSpawnInterval()

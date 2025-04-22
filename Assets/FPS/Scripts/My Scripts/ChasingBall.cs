@@ -3,7 +3,14 @@ using UnityEngine;
 
 public class ChasingBall : BallBase
 {
-    protected override void Attack() { }
+    public override void Start()
+    {
+        base.Start();
+        Attack();
+    }
 
-    //Add specific behaviour to the ChasingBall here, if any
+    protected override void Attack()
+    {
+        StartCoroutine(DamagePlayer(damage));
+    }
 }

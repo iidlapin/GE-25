@@ -3,8 +3,6 @@ using UnityEngine.Events;
 public class CoinScript : MonoBehaviour
 {
     public UnityEvent coinCollect;
-
-
     private void Start()
     {
         coinCollect.AddListener(GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>().IncrementScore);

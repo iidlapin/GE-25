@@ -6,7 +6,7 @@ using UnityEngine;
 
 
 //BallBase needs to inherit from Damageable beacause that is the class used by the projectiles to apply damage
-public abstract class BallBase : Damageable
+public abstract class BallBase : Damageable, IFollower
 {
     [SerializeField] private float followSpeed = 5f;
     [SerializeField] private float fixedHeight = 1f;
@@ -14,19 +14,23 @@ public abstract class BallBase : Damageable
     [SerializeField] private bool dealsDamage = true;
     [SerializeField] private float damageRadius = 3f;
     [SerializeField] private float damageInterval = 1f;
-    [SerializeField] private float damage = 10f;
+    [SerializeField] protected int damage = 10;
+    [SerializeField] private int numberOfCoinsOnDeath = 1;
      
     [SerializeField] private GameObject deathVFX;
 
     private Transform player;
     private bool isPlayerInRange;
 
-    private void Start()
+    public Transform target
+    {
+        get => player;
+        set => player = value;
+    }
+
+    public virtual void Start()
     {
         player = FindFirstObjectByType<PlayerCharacterController>().transform;
-
-        if(dealsDamage)
-            StartCoroutine(DamagePlayer());
 
         //Subscribe to the OnDie action in the Health class so we know when the enemy is killed and we can call our Die function
         Health.OnDie += Die;
@@ -34,12 +38,12 @@ public abstract class BallBase : Damageable
 
     private void Update()
     {
-        BallMovement();
+        Follow();
     }
 
     protected abstract void Attack();
 
-    protected virtual void BallMovement()
+    public void Follow()
     {
         if (player != null)
         {
@@ -49,17 +53,14 @@ public abstract class BallBase : Damageable
             transform.position += movement;
             transform.position = new Vector3(transform.position.x, fixedHeight, transform.position.z);
 
-            if (Vector3.Distance(transform.position, player.position) < damageRadius)
-                isPlayerInRange = true;
-            else
-                isPlayerInRange = false;
+            isPlayerInRange = Vector3.Distance(transform.position, player.position) < damageRadius;
             
         }
     }
 
-    private IEnumerator DamagePlayer()
+    protected IEnumerator DamagePlayer(int damage)
     {
-        while (true)
+        while (dealsDamage)
         {
             if (isPlayerInRange)
             {
@@ -74,7 +75,10 @@ public abstract class BallBase : Damageable
     private void Die()
     {
         HandleDeathVFX();
-        GetComponentInParent<SpawnerManager>().SpawnCoin(transform.position);
+
+        for (int i = 0; i < numberOfCoinsOnDeath; i++)
+            GetComponentInParent<SpawnerManager>().SpawnCoin(transform.position);
+
         Destroy(this.gameObject);
     }
 
