@@ -57,6 +57,7 @@ MonoBehaviour:
   damageRadius: 3
   damageInterval: 1
   damage: 10
+  numberOfCoinsOnDeath: 1
   deathVFX: {fileID: 8950624839484268180, guid: 45ce85b82008be84287f2c7e5bf07647,
     type: 3}
 --- !u!114 &-8209060934663726791
@@ -71,7 +72,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e27364eefd6dd0341ba72a3bfc0d9727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 100
+  MaxHealth: 80
   CriticalHealthRatio: 0.3
 --- !u!135 &3930367815986719108
 SphereCollider:
