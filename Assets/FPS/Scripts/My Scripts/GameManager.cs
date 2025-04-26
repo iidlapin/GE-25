@@ -1,17 +1,45 @@
 using UnityEngine;
-
-public class GameManager : MonoBehaviour
+namespace AG3787
 {
-    [SerializeField] private SpawnerManager spawnerManager;
-    public int score { get; private set; }
-
-    private void Start()
+    public class GameManager : MonoBehaviour
     {
-        spawnerManager.StartSpawning();
-    }
+        [SerializeField] private SpawnerManager spawnerManager; // for spawning enemies or coins
+        public int score { get; private set; } // Current score
+        public int playerCoins { get; private set; } //Coins ( used for bying)
 
-    public void IncrementScore()
-    {
-        score++;
+        private void Start()
+        {
+            spawnerManager.StartSpawning();
+        }
+
+        // Method to increment score (this is separate from coins)
+        public void IncrementScore()
+        {
+            score++;
+            Debug.Log("Score: " + score); // To see score in the console
+        }
+        // Method to add coins when the player collects a coin
+        public void AddCoins(int amount)
+        {
+            playerCoins += amount;
+            Debug.Log("Coins: " + playerCoins);  // To see coins in the console
+        }
+        public bool HasEnoughCoins(int Cost)
+        {
+
+            return playerCoins >= Cost; //Check if player has enough coins
+        }
+        public void SpendCoins(int cost)
+        {
+            if (HasEnoughCoins(cost))
+            {
+                playerCoins -= cost;
+                Debug.Log("Coins spent: " + cost);  // Output to console for debugging
+            }
+            else
+            {
+                Debug.Log("Not enough coins to open the door!");  // If not enough coins
+            }
+        }
     }
 }
