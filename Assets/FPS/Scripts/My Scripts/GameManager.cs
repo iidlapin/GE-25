@@ -4,6 +4,7 @@ namespace AG3787
     public class GameManager : MonoBehaviour
     {
         [SerializeField] private SpawnerManager spawnerManager; // for spawning enemies or coins
+        [SerializeField] private UiController uiController;
         public int score { get; private set; } // Current score
         public int playerCoins { get; private set; } //Coins ( used for bying)
 
@@ -31,15 +32,13 @@ namespace AG3787
         }
         public void SpendCoins(int cost)
         {
-            if (HasEnoughCoins(cost))
-            {
-                playerCoins -= cost;
-                Debug.Log("Coins spent: " + cost);  // Output to console for debugging
-            }
-            else
-            {
-                Debug.Log("Not enough coins to open the door!");  // If not enough coins
-            }
+
+            playerCoins -= cost;
+            Debug.Log("Coins spent: " + cost);  // Output to console for debugging
+
+            uiController.UpdateScore();
+
+
         }
     }
 }

@@ -10,7 +10,6 @@ namespace AG3787
         private void Start()
         {
             // Adding the listener to the coinCollect event using a wrapper method
-            coinCollect.AddListener(AddCoinsToPlayer);
             coinCollect.AddListener(GameObject.FindGameObjectWithTag("UIController").GetComponent<UiController>().UpdateScore);  // Update UI if needed
         }
 
@@ -24,6 +23,7 @@ namespace AG3787
         {
             if (collision.CompareTag("Player"))  // When the player collides with the coin
             {
+                AddCoinsToPlayer();
                 coinCollect.Invoke(); // Call the coinCollect events
                 Destroy(gameObject); // Destroy the coin after collecting
             }

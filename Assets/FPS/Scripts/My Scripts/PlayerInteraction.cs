@@ -5,6 +5,7 @@ namespace AG3787 {
     public class PlayerInteraction : MonoBehaviour
     {
         public float PlayerReach = 3f;
+        [SerializeField] GameManager gameManager;
         Interactable currentInteractable;
 
         void Update()
@@ -12,7 +13,12 @@ namespace AG3787 {
             CheckInteraction();
             if (Input.GetKeyDown(KeyCode.E) && currentInteractable != null)
             {
-                currentInteractable.Interact();
+                if (gameManager.HasEnoughCoins(currentInteractable.Cost))
+                {
+                    gameManager.SpendCoins(currentInteractable.Cost);
+                    currentInteractable.Interact();
+                }
+
             }
         }
 
@@ -21,10 +27,11 @@ namespace AG3787 {
             RaycastHit hit;
             //Creates a raycast from the center of the camera forward
             Ray ray = new Ray(Camera.main.transform.position, Camera.main.transform.forward);
+
             //Checks if raycast collides with anything in the players reach
             if (Physics.Raycast(ray, out hit, PlayerReach))
             {
-                if (hit.collider.tag == "Interactable")  // if looking at an interactable object
+                if (hit.transform.GetComponent<Interactable>())  // if looking at an interactable object
                 {
                     Interactable newInteractable = hit.collider.GetComponent<Interactable>();
                     // If there is many interactable objects near each other, check if the currentInteractable is not the newInteractable

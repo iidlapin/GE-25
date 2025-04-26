@@ -7,16 +7,15 @@ using System.Collections.Generic;
 namespace AG3787
 {
 
-
     public class Interactable : MonoBehaviour
     {
         Outline outline;
         public string message;
-
+        public int Cost = 10;
         public UnityEvent onInteraction;
 
 
-        void Start()
+        public virtual void Start()
         {
             outline = GetComponent<Outline>();
             DisableOutline();

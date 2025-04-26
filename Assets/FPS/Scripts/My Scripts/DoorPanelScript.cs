@@ -5,22 +5,22 @@ using UnityEngine.Events;
 namespace AG3787
 {
    
-    public class DoorPanelScript : MonoBehaviour
+    public class DoorPanelScript : Interactable
     {
         [Header("Door Settings")]
         public GameObject doorObject; // Reference to the door object
         public float openSpeed = 2f;
         public float openHeight = 5;
+      
 
         private Vector3 _closedPosition; // store the doors closed position
         private Vector3 _openPosition;  // store the doors target open position
         private bool _isOpening = false; // flag to start opening the door
-        [SerializeField] int doorCost = 10;
+       
 
-
-        private void Start()
+        public override void Start()
         {
-            
+            base.Start();
             if (doorObject != null)
             {
                 //save the doors starting (closed) position
