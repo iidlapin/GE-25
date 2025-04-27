@@ -8,7 +8,6 @@ public class SpawnerManager : MonoBehaviour
     [SerializeField] private List<GameObject> enemies;
     [SerializeField] private Vector2 spawningInterval;
     [SerializeField] private GameObject coin;
-    [SerializeField] private Bounds spawningArea;
     [SerializeField] private float coinSpawnOffset = 0.5f;
 
     [SerializeField] List<Transform> spawningTransforms = new();
@@ -27,7 +26,7 @@ public class SpawnerManager : MonoBehaviour
         {
             int randomEnemyIndex = Random.Range(0, enemies.Count);
 
-            Instantiate(enemies[randomEnemyIndex], CheckForCloserSpawnPoint(), Quaternion.identity);
+            Instantiate(enemies[randomEnemyIndex], CheckForCloserSpawnPoint(), Quaternion.identity, transform);
 
             yield return new WaitForSeconds(GetRandomSpawnInterval());
         }
