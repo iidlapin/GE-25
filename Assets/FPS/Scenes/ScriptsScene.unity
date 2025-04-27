@@ -683,8 +683,9 @@ MonoBehaviour:
       m_Calls: []
   m_text: Interact
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 2abf75d6e0d8a4aa6910fae6ee5d638b, type: 2}
+  m_sharedMaterial: {fileID: 21352953850445826, guid: 2abf75d6e0d8a4aa6910fae6ee5d638b,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -714,7 +715,7 @@ MonoBehaviour:
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -1168,7 +1169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 317844b38295ea143ae6a0f217161842, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cost: 1
+  Cost: 30
   onInteraction:
     m_PersistentCalls:
       m_Calls:
@@ -1202,7 +1203,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 0.033018887, b: 0.033018887, a: 1}
-  outlineWidth: 2
+  outlineWidth: 10
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -2951,6 +2952,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Shop Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 5079014260146315382, guid: edc9e204f02187149a62d848ab60acaa,
+        type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1591988051}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3733,6 +3739,7 @@ PrefabInstance:
     - {fileID: 186606, guid: 34d7c0326aa4144e0a3b7a904ee287bc, type: 3}
     - {fileID: 165142, guid: 34d7c0326aa4144e0a3b7a904ee287bc, type: 3}
     - {fileID: 142292, guid: 34d7c0326aa4144e0a3b7a904ee287bc, type: 3}
+    - {fileID: 145064, guid: 34d7c0326aa4144e0a3b7a904ee287bc, type: 3}
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 434442, guid: 34d7c0326aa4144e0a3b7a904ee287bc,
         type: 3}
@@ -4393,15 +4400,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 491440, guid: c223af1dea5734353bc1a5682944ed9e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.179
+      value: 0.19214545
       objectReference: {fileID: 0}
     - target: {fileID: 491440, guid: c223af1dea5734353bc1a5682944ed9e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.165
+      value: -0.48651564
       objectReference: {fileID: 0}
     - target: {fileID: 491440, guid: c223af1dea5734353bc1a5682944ed9e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.271
+      value: -2.39
       objectReference: {fileID: 0}
     - target: {fileID: 491440, guid: c223af1dea5734353bc1a5682944ed9e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -4431,6 +4438,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 10805678, guid: c223af1dea5734353bc1a5682944ed9e, type: 3}
+      propertyPath: m_Intensity
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -4443,6 +4454,10 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 560269622}
+    - targetCorrespondingSourceObject: {fileID: 191438, guid: c223af1dea5734353bc1a5682944ed9e,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 560269629}
     - targetCorrespondingSourceObject: {fileID: 105678, guid: c223af1dea5734353bc1a5682944ed9e,
         type: 3}
       insertIndex: -1
@@ -4537,6 +4552,24 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300006, guid: 2bd5b32297f0c415f9dae06ac9992ea6, type: 3}
+--- !u!114 &560269629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560269620}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fea29bb7c508c244a1f805a5fd3fc4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineMode: 0
+  outlineColor: {r: 1, g: 0, b: 0, a: 1}
+  outlineWidth: 10
+  precomputeOutline: 0
+  bakeKeys: []
+  bakeValues: []
 --- !u!1 &565303083
 GameObject:
   m_ObjectHideFlags: 0
@@ -5645,7 +5678,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineMode: 0
   outlineColor: {r: 1, g: 0.20000005, b: 0, a: 1}
-  outlineWidth: 6.4570003
+  outlineWidth: 10
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -6427,15 +6460,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 463594, guid: 0bb9da675ed6e4cd4829f553f9ae44f1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -37.099144
+      value: -37.086
       objectReference: {fileID: 0}
     - target: {fileID: 463594, guid: 0bb9da675ed6e4cd4829f553f9ae44f1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.0785156
+      value: 0.427
       objectReference: {fileID: 0}
     - target: {fileID: 463594, guid: 0bb9da675ed6e4cd4829f553f9ae44f1, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.077377
+      value: -10.305
       objectReference: {fileID: 0}
     - target: {fileID: 463594, guid: 0bb9da675ed6e4cd4829f553f9ae44f1, type: 3}
       propertyPath: m_LocalRotation.w
@@ -12014,9 +12047,6 @@ MonoBehaviour:
   - {fileID: 8437923553670096627, guid: 41b878b702b096246a892e74d41475a6, type: 3}
   spawningInterval: {x: 3, y: 9}
   coin: {fileID: 3879770732131363144, guid: 7b79b9148d73acf4cb70d12efde48484, type: 3}
-  spawningArea:
-    m_Center: {x: 0, y: 0, z: 0}
-    m_Extent: {x: 10, y: 1, z: 10}
   coinSpawnOffset: 1
   spawningTransforms:
   - {fileID: 930064251}

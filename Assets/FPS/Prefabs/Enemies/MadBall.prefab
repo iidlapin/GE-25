@@ -56,10 +56,11 @@ MonoBehaviour:
   dealsDamage: 1
   damageRadius: 3
   damageInterval: 1
-  damage: 20
+  damage: 15
   numberOfCoinsOnDeath: 5
   deathVFX: {fileID: 8950624839484268180, guid: 45ce85b82008be84287f2c7e5bf07647,
     type: 3}
+  CanMove: 0
 --- !u!114 &5645763509540391499
 MonoBehaviour:
   m_ObjectHideFlags: 0
