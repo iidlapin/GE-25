@@ -1,11 +1,13 @@
 using System;
 using UnityEngine;
 
-namespace AG3787 {
+namespace AG3787 
+{
     public class PlayerInteraction : MonoBehaviour
     {
-        public float PlayerReach = 3f;
+        public float PlayerReach = 4f;
         [SerializeField] GameManager gameManager;
+
         Interactable currentInteractable;
 
         void Update()
@@ -15,6 +17,7 @@ namespace AG3787 {
             {
                 if (gameManager.HasEnoughCoins(currentInteractable.Cost))
                 {
+                    
                     gameManager.SpendCoins(currentInteractable.Cost);
                     currentInteractable.Interact();
                 }
@@ -63,12 +66,14 @@ namespace AG3787 {
         {
             currentInteractable = newInteractable;
             currentInteractable.EnableOutline();
-            HUDController.instance.EnableInteractionText(currentInteractable.message);
+            currentInteractable.ShowMessage();
         }
 
         void DisableCurrentInteractable()
         {
-            HUDController.instance.DisableInteractionText();
+            if (currentInteractable == null) return;
+
+            currentInteractable.HideMessage();
             if (currentInteractable)
             {
                 currentInteractable.DisableOutline();

@@ -12,7 +12,7 @@ namespace AG3787
         {
             spawnerManager.StartSpawning();
         }
-
+    
         // Method to increment score (this is separate from coins)
         public void IncrementScore()
         {

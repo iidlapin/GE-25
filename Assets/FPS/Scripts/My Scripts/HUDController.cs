@@ -13,17 +13,19 @@ namespace AG3787
         }
 
         [SerializeField] TMP_Text interactionText;
-
-        public void EnableInteractionText(string text)
+        private void Start()
+        {
+           interactionText.gameObject.SetActive(false);
+        }
+        public void EnableInteractionText(string text, int cost)
         { 
-            interactionText.text = text + " (E)"; // Hard coded but we don't care
+            interactionText.text = text + "\n" + cost + " coins \n (E)"; // Hard coded but we don't care
             interactionText.gameObject.SetActive(true);
         }
+
         public void DisableInteractionText()
         {
             interactionText.gameObject.SetActive(false);
         }
-
-
     }
 }

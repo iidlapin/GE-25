@@ -19,6 +19,8 @@ public abstract class BallBase : Damageable, IFollower
      
     [SerializeField] private GameObject deathVFX;
 
+    public bool CanMove = true;
+
     private Transform player;
     private bool isPlayerInRange;
 
@@ -31,9 +33,9 @@ public abstract class BallBase : Damageable, IFollower
     public virtual void Start()
     {
         player = FindFirstObjectByType<PlayerCharacterController>().transform;
-
         //Subscribe to the OnDie action in the Health class so we know when the enemy is killed and we can call our Die function
         Health.OnDie += Die;
+        CanMove = true;
     }
 
     private void Update()
@@ -45,6 +47,8 @@ public abstract class BallBase : Damageable, IFollower
 
     public void Follow()
     {
+        if (!CanMove) return;
+
         if (target != null)
         {
             Vector3 direction = target.position - transform.position;
@@ -89,3 +93,4 @@ public abstract class BallBase : Damageable, IFollower
         Destroy(explosionVFX, 3f);
     }
 }
+
